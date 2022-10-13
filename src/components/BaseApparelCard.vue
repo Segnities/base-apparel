@@ -11,14 +11,16 @@
         launch deals
       </div>
       <div class="apparel-footer">
-        <input type="email" placeholder="Email address" />
-        <button>
+        <div>
+          <input type="email" placeholder="Email address" />
+        </div>
+        <button data-email-button="btn">
           <img src="@/assets/img/icon-arrow.svg" alt="" />
         </button>
       </div>
     </div>
     <div class="apparel-img">
-      <img src="../assets/img/hero-desktop.jpg" alt="" @dragstart.prevent />
+      <img src="@/assets/img/hero-desktop.jpg" alt="" @dragstart.prevent />
     </div>
   </div>
 </template>
@@ -31,10 +33,10 @@ export default {
 
 <style lang="less" scoped>
 @import "@/assets/less/variables.less";
+
 .apparel-card {
-  width: 970px;
+  max-width: 970px;
   display: grid;
-  grid-auto-flow: column;
   grid-template-rows: 535px;
   grid-template-columns: 4fr 3fr;
   border-radius: 6px;
@@ -52,7 +54,7 @@ export default {
   grid-auto-columns: 300px;
   justify-items: start;
   align-items: flex-start;
-  padding: 2.5rem 3rem 3rem 7rem;
+  padding: 2.5rem 3rem 3rem 6rem;
   background-image: url("../assets/img/bg-pattern-desktop.svg");
 }
 
@@ -85,7 +87,7 @@ export default {
 }
 
 .apparel-body {
-  font-size: 12px;
+  font-size: 11px;
   margin-top: 25px;
   text-align: left;
   line-height: 1.2rem;
@@ -95,12 +97,10 @@ export default {
 .apparel-footer {
   width: 100%;
   display: flex;
-  padding-bottom: 20px;
-
 }
 .apparel-footer input {
-  width: 100%;
-  padding: 8px;
+  width: 260px;
+  padding: 10px 15px;
   border-radius: 30px;
   border-top: 1px solid #b1b1b1;
   border-left: 1px solid #b1b1b1;
@@ -108,9 +108,46 @@ export default {
   border-right: none;
 }
 
+.apparel-footer input:focus-visible {
+  outline: none;
+}
+
+.apparel-footer input::placeholder {
+  font-size: 11px;
+  color: @desaturatedRed;
+}
+
+.apparel-footer button {
+  position: relative;
+  right: 30px;
+  padding: 5px 30px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+  box-shadow: 3px 6px 8px 1px rgba(0, 0, 0, 0.1);
+}
+
+.apparel-footer button img {
+  width: 10px;
+  height: 10px;
+}
+
 @media (min-width: 1440px) {
   .apparel-card {
     min-width: 800px;
+  }
+}
+@media (max-width: 950px) {
+  .apparel-card {
+    max-width: 750px;
+  }
+}
+
+@media (max-width: 784px) {
+  .apparel-card {
+    max-width: 750px;
   }
 }
 </style>
