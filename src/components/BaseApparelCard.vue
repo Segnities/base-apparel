@@ -11,12 +11,21 @@
         launch deals
       </div>
       <div class="apparel-footer">
-        <div>
-          <input type="email" placeholder="Email address" />
+        <form class="form-email" @submit.prevent>
+          <input
+            type="email"
+            placeholder="Email address"
+            maxlength="25"
+            v-model="email"
+          />
+          <img src="@/assets/img/icon-error.svg" alt="" class="error" />
+          <button data-email-button="btn">
+            <img src="@/assets/img/icon-arrow.svg" alt="" />
+          </button>
+        </form>
+        <div class="not-required">
+          <span>Please provide a valid email!</span>
         </div>
-        <button data-email-button="btn">
-          <img src="@/assets/img/icon-arrow.svg" alt="" />
-        </button>
       </div>
     </div>
     <div class="apparel-img">
@@ -28,6 +37,12 @@
 <script>
 export default {
   name: "BaseApparelCard",
+  data() {
+    return {
+      email: "",
+      isValidEmail: true,
+    };
+  },
 };
 </script>
 
@@ -95,11 +110,19 @@ export default {
 }
 
 .apparel-footer {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apparel-footer .form-email {
   width: 100%;
+  align-items: center;
   display: flex;
 }
-.apparel-footer input {
-  width: 260px;
+.form-email input {
+  width: 100%;
   padding: 10px 15px;
   border-radius: 30px;
   border-top: 1px solid #b1b1b1;
@@ -108,30 +131,56 @@ export default {
   border-right: none;
 }
 
-.apparel-footer input:focus-visible {
+.form-email input:focus-visible {
   outline: none;
 }
 
-.apparel-footer input::placeholder {
+.form-email input::placeholder {
   font-size: 11px;
+  font-weight: 300;
   color: @desaturatedRed;
 }
 
-.apparel-footer button {
+.form-email button {
   position: relative;
-  right: 30px;
-  padding: 5px 30px;
-  border-radius: 30px;
+  right: 40px;
+  padding: 12px 30px;
+  border-radius: 20px;
   border: none;
   outline: none;
   cursor: pointer;
-  background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
-  box-shadow: 3px 6px 8px 1px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+  box-shadow: 0px 6px 6px 5px hsl(0 0% 0% / 7%);
+}
+.form-email button:hover {
+  background: hsl(0, 80%, 86%);
+  transform: scale(1.03);
+  transition: transform 0.4s ease-in-out;
 }
 
-.apparel-footer button img {
+.apparel-footer .error {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  right: 50px;
+}
+
+.form-email button img {
   width: 10px;
   height: 10px;
+}
+
+.not-required {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+.not-required span {
+  color: @desaturatedRed;
+  font-size: 11px;
+  margin-left: 25px;
 }
 
 @media (min-width: 1440px) {
