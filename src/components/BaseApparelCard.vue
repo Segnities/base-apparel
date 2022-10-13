@@ -13,24 +13,26 @@
       <div class="apparel-footer">
         <form class="form-email" @submit.prevent>
           <input
-            type="email"
+            type="text"
             placeholder="Email address"
-            maxlength="25"
             v-model="email"
           />
-          <img src="@/assets/img/icon-error.svg" alt="" class="error" />
-          <button data-email-button="btn">
+          <img
+            src="@/assets/img/icon-error.svg"
+            alt=""
+            class="error"
+            v-if="isInvalidEmail"
+          />
+          <button @click="checkEmail">
             <img src="@/assets/img/icon-arrow.svg" alt="" />
           </button>
         </form>
-        <div class="not-required">
+        <div class="not-required" v-if="isInvalidEmail">
           <span>Please provide a valid email!</span>
         </div>
       </div>
     </div>
-    <div class="apparel-img">
-      <img src="@/assets/img/hero-desktop.jpg" alt="" @dragstart.prevent />
-    </div>
+    <div class="apparel-img"></div>
   </div>
 </template>
 
@@ -40,8 +42,19 @@ export default {
   data() {
     return {
       email: "",
-      isValidEmail: true,
+      isInvalidEmail: false,
     };
+  },
+  methods: {
+    checkEmail() {
+      const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
+      if (this.email.length === 0 || !emailRegex.test(this.email)) {
+        this.isInvalidEmail = true;
+      } else {
+        this.email = "";
+        this.isInvalidEmail = false;
+      }
+    },
   },
 };
 </script>
@@ -50,7 +63,7 @@ export default {
 @import "@/assets/less/variables.less";
 
 .apparel-card {
-  max-width: 970px;
+  width: 970px;
   display: grid;
   grid-template-rows: 535px;
   grid-template-columns: 4fr 3fr;
@@ -73,9 +86,9 @@ export default {
   background-image: url("../assets/img/bg-pattern-desktop.svg");
 }
 
-.apparel-img img {
-  width: 100%;
-  height: 100%;
+.apparel-img {
+  background-image: url("@/assets/img/hero-desktop.jpg");
+  background-size: cover;
 }
 
 .apparel-logo {
