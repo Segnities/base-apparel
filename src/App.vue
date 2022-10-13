@@ -1,19 +1,21 @@
 <template>
   <div class="App">
-
+      <BaseApparelCard/>
   </div>
 </template>
 
 <script>
+import BaseApparelCard from "@/components/BaseApparelCard.vue";
 export default {
   name: "App",
+  components: {
+    BaseApparelCard
+  }
 };
 </script>
 
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
-@import "./assets/less/variables.less";
-
 * {
   margin: 0;
   padding: 0;
@@ -27,8 +29,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 
 .App {
@@ -37,7 +37,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(), url('./assets/img/bg-pattern-desktop.svg');
 }
 
 </style>
