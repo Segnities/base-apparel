@@ -1,15 +1,15 @@
 <template>
   <div class="App">
-      <BaseApparelCard/>
+      <apparel-card/>
   </div>
 </template>
 
 <script>
-import BaseApparelCard from "@/components/BaseApparelCard.vue";
+import ApparelCard from "@/components/ApparelCard.vue";
 export default {
   name: "App",
   components: {
-    BaseApparelCard
+    ApparelCard
   }
 };
 </script>
@@ -38,5 +38,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 784px) {
+ 
+}
+
+
 
 </style>

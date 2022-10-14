@@ -4,6 +4,9 @@
       <div class="apparel-logo">
         <img src="@/assets/img/logo.svg" alt="" @dragstart.prevent />
       </div>
+      <div class="apparel-img-mobile">
+        <img src="@/assets/img/hero-mobile.jpg" alt="" />
+      </div>
       <div class="apparel-title"><span>WE'RE</span>COMING SOON</div>
       <div class="apparel-body">
         Hello fellow shoppers! Were currently building our new fashion store.
@@ -16,6 +19,7 @@
             type="text"
             placeholder="Email address"
             v-model="email"
+            @input="removeInvalidOnInput"
           />
           <img
             src="@/assets/img/icon-error.svg"
@@ -32,13 +36,15 @@
         </div>
       </div>
     </div>
-    <div class="apparel-img"></div>
+    <div class="apparel-img-desktop">
+      <img src="@/assets/img/hero-desktop.jpg" alt="" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "BaseApparelCard",
+  name: "apparel-card",
   data() {
     return {
       email: "",
@@ -46,6 +52,11 @@ export default {
     };
   },
   methods: {
+    removeInvalidOnInput() {
+      if (this.isInvalidEmail && this.email.length === 0) {
+        this.isInvalidEmail = false;
+      }
+    },
     checkEmail() {
       const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
       if (this.email.length === 0 || !emailRegex.test(this.email)) {
@@ -86,9 +97,9 @@ export default {
   background-image: url("../assets/img/bg-pattern-desktop.svg");
 }
 
-.apparel-img {
-  background-image: url("@/assets/img/hero-desktop.jpg");
-  background-size: cover;
+.apparel-img-desktop img {
+  width: 100%;
+  height: 100%;
 }
 
 .apparel-logo {
@@ -172,8 +183,8 @@ export default {
 }
 
 .apparel-footer .error {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   position: relative;
   right: 50px;
 }
@@ -196,12 +207,23 @@ export default {
   margin-left: 25px;
 }
 
+.apparel-img-mobile {
+  display: none;
+}
+
 @media (min-width: 1440px) {
   .apparel-card {
     min-width: 800px;
   }
 }
+
 @media (max-width: 950px) {
+  .apparel-card {
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 840px) {
   .apparel-card {
     max-width: 750px;
   }
@@ -209,7 +231,91 @@ export default {
 
 @media (max-width: 784px) {
   .apparel-card {
-    max-width: 750px;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 200px;
+    grid-template-columns: 1fr;
+  }
+
+  .apparel-info {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .apparel-logo {
+    width: 100%;
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .apparel-title {
+    width: 100%;
+    padding: 0rem 2rem;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .apparel-body {
+    text-align: center;
+    padding: 0rem 2rem;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+
+  .apparel-footer {
+    width: 100%;
+  }
+  .form-email {
+    width: 100%;
+  }
+
+  .apparel-img-mobile {
+    width: 100%;
+    display: block;
+    padding: 0;
+
+  }
+
+  .apparel-img-mobile img {
+    width: 100%;
+    padding: 0rem 0rem;
+  }
+
+  .form-email {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .form-email input {
+    padding: 18px 20px;
+  }
+
+  .form-email input::placeholder {
+    font-size: 14px;
+  }
+
+  .form-email button {
+    padding: 18px 30px;
+    border-radius: 40px;
+  }
+
+  .form-email button img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .apparel-img-desktop {
+    display: none;
   }
 }
 </style>
