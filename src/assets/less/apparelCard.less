@@ -171,16 +171,19 @@
     padding: 2.5rem 3rem 3rem 5rem;
     grid-auto-columns: 400px;
     transition: all 0.5s ease-in-out;
-
   }
 }
 
 @media (max-width: 950px) {
   .apparel-card {
+    grid-template-rows: 500px;
     max-width: 850px;
     transition: all 0.4s ease-in-out;
   }
 
+  .apparel-info {
+    grid-auto-columns: 380px;
+  }
 }
 
 @media (max-width: 840px) {
@@ -252,6 +255,7 @@
 
   .apparel-img-mobile {
     max-width: 100%;
+    width: 80%;
     display: block;
     padding: 0;
   }
@@ -288,6 +292,13 @@
 
   .apparel-img-desktop {
     display: none;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .apparel-img-mobile {
+    width: 100%;
+    transition: width 0.5s ease-in;
   }
 }
 
@@ -333,5 +344,4 @@
   .form-email input::placeholder {
     font-size: 11px;
   }
-
 }
