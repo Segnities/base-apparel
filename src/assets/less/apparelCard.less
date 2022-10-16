@@ -4,7 +4,7 @@
   width: 970px;
   display: grid;
   grid-template-rows: 535px;
-  grid-template-columns: 4fr 3fr;
+  grid-template-columns: 6fr 4fr;
   border-radius: 6px;
   background-image: linear-gradient(
     135deg,
@@ -16,11 +16,9 @@
 
 .apparel-info {
   display: grid;
-  grid-template-rows: repeat(4, 120px);
   grid-auto-columns: 300px;
   justify-items: start;
   align-items: flex-start;
-  padding: 2.5rem 3rem 3rem 6rem;
 }
 
 .apparel-img-desktop img {
@@ -42,7 +40,7 @@
   flex-direction: column;
   text-align: left;
   font-size: 2.7rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 10px;
 }
 .apparel-title span:first-child {
@@ -53,14 +51,14 @@
 
 .apparel-body {
   font-size: 11px;
-  margin-top: 25px;
   text-align: left;
   line-height: 1.2rem;
   color: @desaturatedRed;
 }
 
 .apparel-footer {
-  width: 360px;
+  max-width: 420px;
+  min-width: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,13 +93,18 @@
   position: relative;
   right: 40px;
   padding: 12px 30px;
-  border-radius: 20px;
+  border-radius: 24px;
   border: none;
   outline: none;
   cursor: pointer;
   background: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
   box-shadow: 0px 6px 6px 5px hsl(0 0% 0% / 7%);
 }
+
+.border-error {
+  border: 2px solid @desaturatedRed !important;
+}
+
 .form-email button:hover {
   background: hsl(0, 80%, 86%);
   transform: scale(1.03);
@@ -116,16 +119,16 @@
 }
 
 .form-email button img {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
 }
 
 .not-required {
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 10px;
+  position: relative;
+  top: 8px;
+  right: 10px;
+  text-align: left;
 }
 .not-required span {
   color: @desaturatedRed;
@@ -137,10 +140,38 @@
   display: none;
 }
 
-@media (min-width: 1440px) {
+@media only screen and (min-width: 1440px) and (max-width: 1900px) {
   .apparel-card {
     min-width: 800px;
-    transition: all 0.4s ease-in;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .apparel-info {
+    display: grid;
+    grid-template-rows: 75px 120px 100px 90px;
+    grid-auto-columns: 380px;
+    justify-items: start;
+    grid-row-gap: 25px;
+    align-items: flex-start;
+    padding: 3.5rem 3rem 3rem 6rem;
+  }
+
+  .apparel-body {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .apparel-footer {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .apparel-info {
+    padding: 2.5rem 3rem 3rem 5rem;
+    grid-auto-columns: 400px;
+    transition: all 0.5s ease-in-out;
+
   }
 }
 
@@ -149,19 +180,25 @@
     max-width: 850px;
     transition: all 0.4s ease-in-out;
   }
+
 }
 
 @media (max-width: 840px) {
   .apparel-card {
-    max-width: 800px;
+    max-width: 830px;
     transform: scale(0.9);
     transition: all 0.4s ease-in-out;
+    grid-template-columns: 5fr 4fr;
+  }
+
+  .apparel-info {
+    grid-template-columns: 350px;
   }
 }
 
 @media (max-width: 784px) {
   .apparel-card {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     align-items: center;
     display: grid;
@@ -182,7 +219,7 @@
 
   .apparel-logo {
     width: 100%;
-    padding: 4rem 2rem;
+    padding: 2.5em;
     display: flex;
     justify-content: flex-start;
   }
@@ -204,6 +241,7 @@
   }
 
   .apparel-footer {
+    max-width: 100%;
     width: 100%;
     padding: 2rem;
   }
@@ -213,7 +251,7 @@
   }
 
   .apparel-img-mobile {
-    width: 100%;
+    max-width: 100%;
     display: block;
     padding: 0;
   }
@@ -256,10 +294,16 @@
 @media only screen and (max-width: 380px) {
   .apparel-card {
     grid-template-rows: 1fr 130px;
+    grid-template-columns: 100%;
+    overflow: hidden;
   }
 
   .apparel-title {
     font-size: 2.5rem;
+  }
+
+  .form-email {
+    margin-bottom: 0;
   }
 
   .apparel-footer {
@@ -270,11 +314,11 @@
 
   .apparel-footer .form-email button,
   .apparel-footer .form-email input {
-    padding: 15px 30px;
+    padding: 12px 25px;
   }
 
   .form-email button {
-    right: 25px;
+    right: 40px;
   }
 
   .form-email img.error {
@@ -289,4 +333,5 @@
   .form-email input::placeholder {
     font-size: 11px;
   }
+
 }
