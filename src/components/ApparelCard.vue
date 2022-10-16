@@ -5,7 +5,7 @@
         <img src="@/assets/img/logo.svg" alt="" @dragstart.prevent />
       </div>
       <div class="apparel-img-mobile">
-        <img src="@/assets/img/hero-mobile.jpg" alt="" />
+        <img src="@/assets/img/hero-mobile.jpg" alt="" @dragstart.prevent/>
       </div>
       <div class="apparel-title"><span>WE'RE</span>COMING SOON</div>
       <div class="apparel-body">
@@ -20,15 +20,17 @@
             placeholder="Email address"
             v-model="email"
             @input="removeInvalidOnInput"
+            :class="isInvalidEmail ? 'border-error' : ''"
           />
           <img
             src="@/assets/img/icon-error.svg"
             alt=""
             class="error"
             v-if="isInvalidEmail"
+            @dragstart.prevent
           />
           <button @click="checkEmail">
-            <img src="@/assets/img/icon-arrow.svg" alt="" />
+            <img src="@/assets/img/icon-arrow.svg" alt="" @dragstart.prevent />
           </button>
         </form>
         <div class="not-required" v-if="isInvalidEmail">
@@ -37,7 +39,7 @@
       </div>
     </div>
     <div class="apparel-img-desktop">
-      <img src="@/assets/img/hero-desktop.jpg" alt="" />
+      <img src="@/assets/img/hero-desktop.jpg" alt="" @dragstart.prevent/>
     </div>
   </div>
 </template>
