@@ -71,6 +71,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/less/apparelCard.less';
-
+@import "@/assets/less/apparelCard.less";
 </style>

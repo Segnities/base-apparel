@@ -39,10 +39,5 @@ export default {
   align-items: center;
 }
 
-@media (max-width: 784px) {
- 
-}
-
-
 
 </style>

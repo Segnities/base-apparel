@@ -140,18 +140,22 @@
 @media (min-width: 1440px) {
   .apparel-card {
     min-width: 800px;
+    transition: all 0.4s ease-in;
   }
 }
 
 @media (max-width: 950px) {
   .apparel-card {
     max-width: 850px;
+    transition: all 0.4s ease-in-out;
   }
 }
 
 @media (max-width: 840px) {
   .apparel-card {
-    max-width: 750px;
+    max-width: 800px;
+    transform: scale(0.9);
+    transition: all 0.4s ease-in-out;
   }
 }
 
@@ -163,6 +167,8 @@
     display: grid;
     grid-template-rows: 1fr 200px;
     grid-template-columns: 1fr;
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
   }
 
   .apparel-info {
@@ -199,7 +205,9 @@
 
   .apparel-footer {
     width: 100%;
+    padding: 2rem;
   }
+
   .form-email {
     width: 100%;
   }
@@ -208,7 +216,6 @@
     width: 100%;
     display: block;
     padding: 0;
-
   }
 
   .apparel-img-mobile img {
@@ -231,8 +238,9 @@
   }
 
   .form-email button {
-    padding: 18px 30px;
+    padding: 18px 40px;
     border-radius: 40px;
+    right: 60px;
   }
 
   .form-email button img {
@@ -242,5 +250,43 @@
 
   .apparel-img-desktop {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .apparel-card {
+    grid-template-rows: 1fr 130px;
+  }
+
+  .apparel-title {
+    font-size: 2.5rem;
+  }
+
+  .apparel-footer {
+    padding-top: 0;
+    padding-left: 2rem;
+    padding-right: 10px;
+  }
+
+  .apparel-footer .form-email button,
+  .apparel-footer .form-email input {
+    padding: 15px 30px;
+  }
+
+  .form-email button {
+    right: 25px;
+  }
+
+  .form-email img.error {
+    width: 12px;
+    height: 12px;
+  }
+
+  .form-email input {
+    font-size: 13px;
+  }
+
+  .form-email input::placeholder {
+    font-size: 11px;
   }
 }
