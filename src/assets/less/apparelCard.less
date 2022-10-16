@@ -1,66 +1,4 @@
-<template>
-  <div class="apparel-card">
-    <div class="apparel-info">
-      <div class="apparel-logo">
-        <img src="@/assets/img/logo.svg" alt="" @dragstart.prevent />
-      </div>
-      <div class="apparel-title"><span>WE'RE</span>COMING SOON</div>
-      <div class="apparel-body">
-        Hello fellow shoppers! Were currently building our new fashion store.
-        Add your email below to stay up-to-date with announcements and our
-        launch deals
-      </div>
-      <div class="apparel-footer">
-        <form class="form-email" @submit.prevent>
-          <input
-            type="text"
-            placeholder="Email address"
-            v-model="email"
-          />
-          <img
-            src="@/assets/img/icon-error.svg"
-            alt=""
-            class="error"
-            v-if="isInvalidEmail"
-          />
-          <button @click="checkEmail">
-            <img src="@/assets/img/icon-arrow.svg" alt="" />
-          </button>
-        </form>
-        <div class="not-required" v-if="isInvalidEmail">
-          <span>Please provide a valid email!</span>
-        </div>
-      </div>
-    </div>
-    <div class="apparel-img"></div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "BaseApparelCard",
-  data() {
-    return {
-      email: "",
-      isInvalidEmail: false,
-    };
-  },
-  methods: {
-    checkEmail() {
-      const emailRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
-      if (this.email.length === 0 || !emailRegex.test(this.email)) {
-        this.isInvalidEmail = true;
-      } else {
-        this.email = "";
-        this.isInvalidEmail = false;
-      }
-    },
-  },
-};
-</script>
-
-<style lang="less" scoped>
-@import "@/assets/less/variables.less";
+@import "./variables.less";
 
 .apparel-card {
   width: 970px;
@@ -83,12 +21,11 @@ export default {
   justify-items: start;
   align-items: flex-start;
   padding: 2.5rem 3rem 3rem 6rem;
-  background-image: url("../assets/img/bg-pattern-desktop.svg");
 }
 
-.apparel-img {
-  background-image: url("@/assets/img/hero-desktop.jpg");
-  background-size: cover;
+.apparel-img-desktop img {
+  width: 100%;
+  height: 100%;
 }
 
 .apparel-logo {
@@ -172,8 +109,8 @@ export default {
 }
 
 .apparel-footer .error {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   position: relative;
   right: 50px;
 }
@@ -196,20 +133,160 @@ export default {
   margin-left: 25px;
 }
 
+.apparel-img-mobile {
+  display: none;
+}
+
 @media (min-width: 1440px) {
   .apparel-card {
     min-width: 800px;
+    transition: all 0.4s ease-in;
   }
 }
+
 @media (max-width: 950px) {
   .apparel-card {
-    max-width: 750px;
+    max-width: 850px;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+@media (max-width: 840px) {
+  .apparel-card {
+    max-width: 800px;
+    transform: scale(0.9);
+    transition: all 0.4s ease-in-out;
   }
 }
 
 @media (max-width: 784px) {
   .apparel-card {
-    max-width: 750px;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    display: grid;
+    grid-template-rows: 1fr 200px;
+    grid-template-columns: 1fr;
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .apparel-info {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .apparel-logo {
+    width: 100%;
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .apparel-title {
+    width: 100%;
+    padding: 0rem 2rem;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .apparel-body {
+    text-align: center;
+    padding: 0rem 2rem;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+
+  .apparel-footer {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .form-email {
+    width: 100%;
+  }
+
+  .apparel-img-mobile {
+    width: 100%;
+    display: block;
+    padding: 0;
+  }
+
+  .apparel-img-mobile img {
+    width: 100%;
+    padding: 0rem 0rem;
+  }
+
+  .form-email {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .form-email input {
+    padding: 18px 20px;
+  }
+
+  .form-email input::placeholder {
+    font-size: 14px;
+  }
+
+  .form-email button {
+    padding: 18px 40px;
+    border-radius: 40px;
+    right: 60px;
+  }
+
+  .form-email button img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .apparel-img-desktop {
+    display: none;
   }
 }
-</style>
+
+@media only screen and (max-width: 380px) {
+  .apparel-card {
+    grid-template-rows: 1fr 130px;
+  }
+
+  .apparel-title {
+    font-size: 2.5rem;
+  }
+
+  .apparel-footer {
+    padding-top: 0;
+    padding-left: 2rem;
+    padding-right: 10px;
+  }
+
+  .apparel-footer .form-email button,
+  .apparel-footer .form-email input {
+    padding: 15px 30px;
+  }
+
+  .form-email button {
+    right: 25px;
+  }
+
+  .form-email img.error {
+    width: 12px;
+    height: 12px;
+  }
+
+  .form-email input {
+    font-size: 13px;
+  }
+
+  .form-email input::placeholder {
+    font-size: 11px;
+  }
+}
